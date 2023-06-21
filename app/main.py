@@ -5,7 +5,6 @@ from .routers import post, user, auth, vote
 from .config import settings
 from fastapi.middleware.cors import CORSMiddleware
 
-
 # only needed when not using alembic (using SQLALCHEMY)
 # models.Base.metadata.create_all(bind=engine)
 
