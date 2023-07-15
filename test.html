@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+  <style>
+    /* Add some basic styles for the login page */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      text-align: center;
+    }
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <form id="login-form">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <script>
+    // Add an event listener to the login form
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the form from submitting normally
+
+      // Get the values from the form
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+
+      // Create an HTTP request object
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', 'https://fastapi-mhawesh-e2a16b601c49.herokuapp.com/login', true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+
+      // Define the callback function for the API request
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          // Successful login
+          alert('Login successful!');
+          // You can redirect the user to another page or perform additional actions here
+        } else {
+          // Failed login
+          alert('Login failed. Please check your credentials.');
+        }
+      };
+
+      // Send the request with the provided username and password
+      xhr.send(JSON.stringify({ username: username, password: password }));
+    });
+  </script>
+</body>
+</html>
